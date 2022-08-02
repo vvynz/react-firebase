@@ -6,12 +6,16 @@ function App() {
     email: "",
     password: ""
   })
-  
-  const handleInput = () => {
 
+  const handleInput = (e) => {
+    let input = {[e.target.name]: e.target.value}
+
+    setData({...data, ...input})
   }
 
-  const handleSubmit = () => {}
+  const handleSubmit = () => {
+    console.log(data)
+  }
 
   return (
     <div className="App-header">
