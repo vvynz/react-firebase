@@ -18,7 +18,7 @@ function App() {
   }
 
   const handleSubmit = () => {
-    createUserWithEmailAndPassword(auth, data.email, data.password)
+    signInWithEmailAndPassword(auth, data.email, data.password)
     .then((res) => {
       console.log(res.user);
     })
@@ -43,7 +43,7 @@ function App() {
       name="password" 
       onChange={(e) => handleInput(e)} 
       />
-       <button onClick={handleSubmit}>Sign Up</button>
+       <button onClick={handleSubmit}>Sign In</button>
     </div>
   );
 }
