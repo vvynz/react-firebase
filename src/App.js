@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { app, database } from "./firebaseConfig";
 import './App.css';
 
 function App() {
