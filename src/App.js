@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { app, database } from "./firebaseConfig";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import './App.css';
 
 function App() {
@@ -8,6 +9,8 @@ function App() {
     password: ""
   })
 
+  const auth = getAuth();
+  
   const handleInput = (e) => {
     let input = {[e.target.name]: e.target.value}
 
