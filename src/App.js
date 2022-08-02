@@ -12,6 +12,7 @@ function App() {
   })
 
   const auth = getAuth();
+  const dbInstance = collection(database, "users");
 
   const handleInput = (e) => {
     let input = {[e.target.name]: e.target.value}
@@ -27,6 +28,13 @@ function App() {
     // .catch((err) => {
     //   console.log(err.message);
     // });
+    addDoc(dbInstance, data)
+    .then(() => {
+      alert("data sent!")
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
   }
 
   return (
