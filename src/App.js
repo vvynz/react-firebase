@@ -10,7 +10,7 @@ function App() {
   })
 
   const auth = getAuth();
-  
+
   const handleInput = (e) => {
     let input = {[e.target.name]: e.target.value}
 
@@ -18,7 +18,13 @@ function App() {
   }
 
   const handleSubmit = () => {
-    console.log(data)
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+    .then((res) => {
+      console.log(res.user);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
   }
 
   return (
