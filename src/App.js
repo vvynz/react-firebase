@@ -1,6 +1,12 @@
+import { useState } from "react";
 import './App.css';
 
 function App() {
+  const [data, setData] = useState({
+    email: "",
+    password: ""
+  })
+  
   const handleInput = () => {
 
   }
