@@ -1,6 +1,12 @@
 import './App.css';
 
 function App() {
+  const handleInput = () => {
+
+  }
+
+  const handleSubmit = () => {}
+  
   return (
     <div className="App-header">
       <input 
@@ -13,6 +19,7 @@ function App() {
       placeholder="Password" 
       type="password" 
       name="password" />
+       <button>Sign Up</button>
     </div>
   );
 }
