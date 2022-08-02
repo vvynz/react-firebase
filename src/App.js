@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { app, database } from "./firebaseConfig";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import './App.css';
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
       <input 
       className="input-field"
       placeholder="Name" 
-      type="name" 
+      type="text" 
       name="name" 
       onChange={(e) => handleInput(e)} 
       />
