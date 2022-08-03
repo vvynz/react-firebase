@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
 } from "firebase/auth";
 
 import "./App.css";
@@ -43,8 +43,14 @@ export default function App2() {
   };
 
   const googleSignIn = () => {
-
-  }
+    signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <div className="App-header">
