@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 import "./App.css";
 
@@ -17,13 +21,15 @@ export default function App2() {
 
   const handleSubmit = () => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
-    .then((res) => {
-      console.log(res.user);
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
+
+  const signIn = () => {};
 
   return (
     <div className="App-header">
@@ -35,9 +41,11 @@ export default function App2() {
       <input
         name="password"
         placeholder="password"
+        type="password"
         onChange={(e) => handleInput(e)}
       />
       <button onClick={handleSubmit}>Submit</button>
+      <button onClick={signIn}>Sign In</button>
     </div>
   );
 }
