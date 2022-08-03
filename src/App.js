@@ -11,6 +11,7 @@ function App() {
     email: "",
     password: ""
   })
+  const [users, setUsers] = useState([]);
 
   const auth = getAuth();
   const dbInstance = collection(database, "users");
@@ -40,7 +41,7 @@ function App() {
 
   const getData = async () => {
     const data = await getDocs(dbInstance);
-    console.log(data.docs.map((item) => {
+    setUsers(data.docs.map((item) => {
       return {...item.data(), id: item.id}
     }))
   }
