@@ -13,11 +13,15 @@ export default function App2() {
     setData({...data, ...newInput});
   }
 
+  const handleSubmit = () => {
+
+  }
+
   return(
     <div className="App-header">
       <input name="email" placeholder="email" onChange={(e) => handleInput(e)}/>
       <input name="password" placeholder="password" onChange={(e) => handleInput(e)}/>
-      <button>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   )
 }
