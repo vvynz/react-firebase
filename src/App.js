@@ -46,7 +46,7 @@ function App() {
   }
 
   const updateData = () => {
-    
+    let dataToUpd = doc(database, "users", id)
   }
 
   return (
