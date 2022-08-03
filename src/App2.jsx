@@ -16,7 +16,13 @@ export default function App2() {
   };
 
   const handleSubmit = () => {
-    createUserWithEmailAndPassword();
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+    .then((res) => {
+      console.log(res.user);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
   };
 
   return (
