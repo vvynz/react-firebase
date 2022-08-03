@@ -7,6 +7,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { app, database } from "./firebaseConfig";
+import { collection, addDoc, getDoc, getDocs } from "firebase/firestore";
 
 import "./App.css";
 
@@ -15,6 +17,8 @@ export default function App2() {
 
   let auth = getAuth();
   let googleProvider = new GoogleAuthProvider();
+
+  const collectionRef = collection(database, "users");
 
   const handleInput = (e) => {
     let newInput = { [e.target.name]: e.target.value };
@@ -52,6 +56,15 @@ export default function App2() {
       });
   };
 
+  const getData = () => {
+    getDocs(collectionRef)
+    .then((res) => {
+      console.log(res.docs.map((item) => {
+        return {...item.data()}
+      }))
+    })
+  }
+
   return (
     <div className="App-header">
       <input
@@ -66,6 +79,7 @@ export default function App2() {
         onChange={(e) => handleInput(e)}
       />
       <button onClick={handleSubmit}>Submit</button>
+      <button onClick={getData}>Get Data</button>
       <button onClick={googleSignIn}>Sign In</button>
     </div>
   );
