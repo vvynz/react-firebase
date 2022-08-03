@@ -45,6 +45,10 @@ function App() {
     }))
   }
 
+  const updateData = () => {
+    
+  }
+
   return (
     <div className="App-header">
       <input 
