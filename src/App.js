@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { app, database } from "./firebaseConfig";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import './App.css';
 import { async } from "@firebase/util";
 
@@ -46,7 +46,7 @@ function App() {
     }))
   }
 
-  const updateData = () => {
+  const updateData = (id) => {
     let dataToUpd = doc(database, "users", id)
   }
 
@@ -80,6 +80,7 @@ function App() {
            <div>
              <p>{user.name}</p>
              <p>{user.email}</p>
+             <button onClick={() => updateData(user.id)}>Update</button>
            </div>
          )
        })}
