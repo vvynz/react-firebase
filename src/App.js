@@ -74,6 +74,15 @@ function App() {
       onChange={(e) => handleInput(e)} 
       />
        <button onClick={getData}>Get Data</button>
+
+       {users.map((user) => {
+         return(
+           <div>
+             <p>{user.name}</p>
+             <p>{user.email}</p>
+           </div>
+         )
+       })}
     </div>
   );
 }
