@@ -57,7 +57,7 @@ function App() {
       alert("Data deleted")
     })
     .catch((err) => {
-      console.log(err.message)
+      console.log(err)
     })
   }
 
@@ -92,6 +92,7 @@ function App() {
              <p>{user.name}</p>
              <p>{user.email}</p>
              <button onClick={() => updateData(user.id)}>Update</button>
+             <button onClick={() => deleteData(user.id)}>Delete</button>
            </div>
          )
        })}
