@@ -50,6 +50,10 @@ function App() {
     let dataToUpd = doc(database, "users", id)
   }
 
+  const deleteData = () => {
+    
+  }
+
   return (
     <div className="App-header">
       <input 
