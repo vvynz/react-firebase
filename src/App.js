@@ -3,6 +3,7 @@ import { app, database } from "./firebaseConfig";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import './App.css';
+import { async } from "@firebase/util";
 
 function App() {
   const [data, setData] = useState({
@@ -37,6 +38,13 @@ function App() {
     });
   }
 
+  const getData = async () => {
+    const data = await getDocs(dbInstance);
+    console.log(data.docs.map((item) => {
+      return {...item.data(), id: item.id}
+    }))
+  }
+
   return (
     <div className="App-header">
       <input 
@@ -60,7 +68,7 @@ function App() {
       name="password" 
       onChange={(e) => handleInput(e)} 
       />
-       <button onClick={handleSubmit}>Add Data</button>
+       <button onClick={getData}>Get Data</button>
     </div>
   );
 }
