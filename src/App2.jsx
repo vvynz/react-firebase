@@ -60,9 +60,13 @@ export default function App2() {
     getDocs(collectionRef)
     .then((res) => {
       console.log(res.docs.map((item) => {
-        return {...item.data()}
+        return {...item.data(), id: item.id}
       }))
     })
+  };
+
+  const updData = () => {
+
   }
 
   return (
@@ -79,7 +83,7 @@ export default function App2() {
         onChange={(e) => handleInput(e)}
       />
       <button onClick={handleSubmit}>Submit</button>
-      <button onClick={getData}>Get Data</button>
+      <button onClick={updData}>Update Data</button>
       <button onClick={googleSignIn}>Sign In</button>
     </div>
   );
