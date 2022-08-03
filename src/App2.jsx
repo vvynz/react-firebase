@@ -4,6 +4,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 
 import "./App.css";
@@ -12,6 +14,7 @@ export default function App2() {
   const [data, setData] = useState({});
 
   let auth = getAuth();
+  let googleProvider = new GoogleAuthProvider();
 
   const handleInput = (e) => {
     let newInput = { [e.target.name]: e.target.value };
