@@ -50,8 +50,15 @@ function App() {
     let dataToUpd = doc(database, "users", id)
   }
 
-  const deleteData = () => {
-    
+  const deleteData = (id) => {
+    let dataToDel = doc(database, "users", id);
+    deleteDoc(dataToDel)
+    .then(() => {
+      alert("Data deleted")
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
   }
 
   return (
