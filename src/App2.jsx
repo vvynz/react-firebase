@@ -1,4 +1,7 @@
 import { useState  } from "react";
+
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 import './App.css';
 
 export default function App2() {
