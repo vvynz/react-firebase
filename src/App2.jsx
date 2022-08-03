@@ -42,6 +42,10 @@ export default function App2() {
       });
   };
 
+  const googleSignIn = () => {
+
+  }
+
   return (
     <div className="App-header">
       <input
@@ -56,7 +60,7 @@ export default function App2() {
         onChange={(e) => handleInput(e)}
       />
       <button onClick={handleSubmit}>Submit</button>
-      <button onClick={signIn}>Sign In</button>
+      <button onClick={googleSignIn}>Sign In</button>
     </div>
   );
 }
