@@ -8,7 +8,14 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { app, database } from "./firebaseConfig";
-import { collection, addDoc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import {
   getStorage,
   ref,
@@ -36,9 +43,20 @@ export default function App2() {
   };
 
   const handleSubmit = () => {
-    createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
+    // createUserWithEmailAndPassword(auth, data.email, data.password)
+    //   .then((res) => {
+    //     console.log(res.user);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.message);
+    //   });
+
+    addDoc(collectionRef, {
+      name: data.name,
+      age: Number(data.age),
+    })
+      .then(() => {
+        alert("Data submitted");
       })
       .catch((err) => {
         console.log(err.message);
@@ -133,6 +151,10 @@ export default function App2() {
         onChange={(e) => setData(e.target.files[0])}
       />
       <button onClick={handleFileInput}>Upload File</button>
+
+      <input name="name" placeholder="name" onChange={(e) => handleInput(e)} />
+      <input name="age" placeholder="age" onChange={(e) => handleInput(e)} />
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
