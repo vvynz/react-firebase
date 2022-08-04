@@ -57,17 +57,16 @@ export default function App2() {
   };
 
   const getData = () => {
-    getDocs(collectionRef)
-    .then((res) => {
-      console.log(res.docs.map((item) => {
-        return {...item.data(), id: item.id}
-      }))
-    })
+    getDocs(collectionRef).then((res) => {
+      console.log(
+        res.docs.map((item) => {
+          return { ...item.data(), id: item.id };
+        })
+      );
+    });
   };
 
-  const updData = () => {
-
-  }
+  const updData = () => {};
 
   return (
     <div className="App-header">
@@ -82,6 +81,12 @@ export default function App2() {
         type="password"
         onChange={(e) => handleInput(e)}
       />
+      <input 
+      name="file"
+      placeholder="Choose a file"
+      type="file"
+      onChange={(e) => setData(e.target.files[0])} />
+
       <button onClick={handleSubmit}>Submit</button>
       <button onClick={updData}>Update Data</button>
       <button onClick={googleSignIn}>Sign In</button>
