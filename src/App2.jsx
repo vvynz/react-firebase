@@ -82,7 +82,8 @@ export default function App2() {
     // console.log(data);
 
     // create a ref to the uploaded file
-    const fileRef = ref(storage, data.name);
+    //can also create a folder to upload the file to
+    const fileRef = ref(storage, `images/${data.name}`);
 
     //upload file
     const uploadTask = uploadBytesResumable(fileRef, data);
@@ -97,8 +98,8 @@ export default function App2() {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log("Upload is " + progress + "% done");
       },
-      (error) => {
-        console.log(error);
+      (err) => {
+        console.log(err.message);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
