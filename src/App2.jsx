@@ -63,6 +63,9 @@ export default function App2() {
       });
   };
 
+  // where(enter the condition for filtering/ querying) 
+  const ageQuery = query(collectionRef, where("age", "<", 28));
+
   const signIn = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((res) => {
