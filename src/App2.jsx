@@ -68,6 +68,10 @@ export default function App2() {
 
   const updData = () => {};
 
+  const handleFileInput = () => {
+    console.log(data);
+  };
+
   return (
     <div className="App-header">
       <input
@@ -81,15 +85,18 @@ export default function App2() {
         type="password"
         onChange={(e) => handleInput(e)}
       />
-      <input 
-      name="file"
-      placeholder="Choose a file"
-      type="file"
-      onChange={(e) => setData(e.target.files[0])} />
 
       <button onClick={handleSubmit}>Submit</button>
       <button onClick={updData}>Update Data</button>
       <button onClick={googleSignIn}>Sign In</button>
+
+      <input
+        name="file"
+        placeholder="Choose a file"
+        type="file"
+        onChange={(e) => setData(e.target.files[0])}
+      />
+      <button onClick={handleFileInput}>Upload File</button>
     </div>
   );
 }
