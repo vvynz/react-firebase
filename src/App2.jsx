@@ -15,6 +15,7 @@ import {
   getDocs,
   query,
   where,
+  onSnapshot,
 } from "firebase/firestore";
 import {
   getStorage,
@@ -63,8 +64,8 @@ export default function App2() {
       });
   };
 
-  // where(enter the condition for filtering/ querying) 
-  const ageQuery = query(collectionRef, where("age", "<", 28));
+  // where(enter the condition for filtering/ querying)
+  const ageQuery = query(collectionRef, where("age", ">=", 28));
 
   const signIn = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -87,10 +88,19 @@ export default function App2() {
   };
 
   const getData = () => {
-    getDocs(collectionRef).then((res) => {
+    // getDocs(collectionRef).then((res) => {
+    //   console.log(
+    //     res.docs.map((item) => {
+    //       return { ...item.data(), id: item.id };
+    //     })
+    //   );
+    // });
+
+    // onSnapshot allows up to listen/ see live updates whenever the specified data changes
+    onSnapshot(ageQuery, (data) => {
       console.log(
-        res.docs.map((item) => {
-          return { ...item.data(), id: item.id };
+        data.docs.map((item) => {
+          return item.data();
         })
       );
     });
@@ -145,7 +155,7 @@ export default function App2() {
       />
 
       <button onClick={handleSubmit}>Submit</button>
-      <button onClick={updData}>Update Data</button>
+      <button onClick={getData}>Get Data</button>
       <button onClick={googleSignIn}>Sign In</button>
 
       <input
