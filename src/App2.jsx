@@ -9,7 +9,12 @@ import {
 } from "firebase/auth";
 import { app, database } from "./firebaseConfig";
 import { collection, addDoc, getDoc, getDocs } from "firebase/firestore";
-import { getStorage, ref } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 import "./App.css";
 
@@ -19,7 +24,7 @@ export default function App2() {
   let auth = getAuth();
   let googleProvider = new GoogleAuthProvider();
 
-  // a root reference 
+  // a root reference
   const storage = getStorage();
 
   const collectionRef = collection(database, "users");
@@ -79,6 +84,28 @@ export default function App2() {
     // create a ref to the uploaded file
     const fileRef = ref(storage, data.name);
 
+    //upload file
+    const uploadTask = uploadBytesResumable(fileRef, data);
+
+    //state_changed observer, called any time the state changes
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // observe state change events such as progress, pause, and resume
+        // get task progress, including the num of bytes uploaded and the total num of bytes to be uploaded
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log("File is available at", downloadURL);
+        });
+      }
+    );
   };
 
   return (
