@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { app, database } from "./firebaseConfig";
 import { collection, addDoc, getDoc, getDocs } from "firebase/firestore";
+import { getStorage, ref } from "firebase/storage";
 
 import "./App.css";
 
@@ -17,6 +18,9 @@ export default function App2() {
 
   let auth = getAuth();
   let googleProvider = new GoogleAuthProvider();
+
+  // a root reference 
+  const storage = getStorage();
 
   const collectionRef = collection(database, "users");
 
@@ -69,7 +73,12 @@ export default function App2() {
   const updData = () => {};
 
   const handleFileInput = () => {
-    console.log(data);
+    // will give us name of the file (ex. "a.jpg"), type, size, date modified
+    // console.log(data);
+
+    // create a ref to the uploaded file
+    const fileRef = ref(storage, data.name);
+
   };
 
   return (
@@ -92,7 +101,6 @@ export default function App2() {
 
       <input
         name="file"
-        placeholder="Choose a file"
         type="file"
         onChange={(e) => setData(e.target.files[0])}
       />
