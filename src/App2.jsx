@@ -65,7 +65,8 @@ export default function App2() {
   };
 
   // where(enter the condition for filtering/ querying)
-  const ageQuery = query(collectionRef, where("age", ">=", 28));
+  const ageQuery = query(collectionRef, where("age", ">", 26));
+  const nameQuery = query(collectionRef, where("name", ">", "J"));
 
   const signIn = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -97,7 +98,7 @@ export default function App2() {
     // });
 
     // onSnapshot allows up to listen/ see live updates whenever the specified data changes
-    onSnapshot(ageQuery, (data) => {
+    onSnapshot(nameQuery, (data) => {
       console.log(
         data.docs.map((item) => {
           return item.data();
